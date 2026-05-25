@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    This PowerShell script ensures that Group Policy objects are reprocessed even if they have not changed.
+    This PowerShell script ensures that Windows 11 Kernel (Direct Memory Access) DMA Protection is enabled and set to block all.
 
 .NOTES
     Author          : Sangwon Yoon
