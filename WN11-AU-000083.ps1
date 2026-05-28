@@ -24,4 +24,18 @@
     PS C:\> .\WN11-AU-000083.ps1 
 #>
 
-auditpol /set /subcategory:"Other Object Access Events" /success:enable
+if ((Get-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0).State -ne 'Installed') {
+    Add-WindowsCapability -Online -Name Rsat.GroupPolicy.Management.Tools~~~~0.0.1.0
+}
+
+Import-Module GroupPolicy
+
+$gpoName = "LocalGPO"
+$domain = (Get-WmiObject Win32_ComputerSystem).Domain
+
+Set-GPRegistryValue -Name $gpoName -Domain $domain `
+    -Key "HKLM\SOFTWARE\Policies\Microsoft\Windows\Audit" `
+    -ValueName "OtherObjectAccessEvents" `
+    -Type DWord -Value 1
+
+Invoke-GPUpdate -Force
