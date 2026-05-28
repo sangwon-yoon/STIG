@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    This PowerShell script ensures that the use of a hardware security device with Windows Hello for Business is enabled.
+    This PowerShell script ensures that Windows 11 is configured to enable Remote host allows delegation of non-exportable credentials.
 
 .NOTES
     Author          : Sangwon Yoon
